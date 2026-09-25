@@ -24,7 +24,7 @@ const WorkoutsList = () => {
       } catch (error) {
         console.error("Error:", error);
       } finally {
-        
+
         const elapsed = Date.now() - startTime;
         const remaining = Math.max(0, MIN_LOADING_TIME - elapsed);
 
@@ -35,17 +35,25 @@ const WorkoutsList = () => {
     fetchWorkouts();
   }, []);
 
-  if (loading) {
-    return (
-      <div className="flex flex-col items-center justify-center py-32">
-        <div className="h-12 w-12 animate-spin rounded-full border-4 border-[#222630] border-t-[#C2F800]" />
-        <p className="mt-4 text-sm font-medium text-[#9CA3AF]">
-          Loading workouts...
-        </p>
-      </div>
-    );
-  }
-
+if (loading) {
+  return (
+    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {Array.from({ length: 6 }).map((_, i) => (
+        <div
+          key={i}
+          className="overflow-hidden rounded-2xl border border-[#222630] bg-[#15171D]"
+        >
+          <div className="aspect-[16/10] w-full animate-pulse bg-[#1a1d24]" />
+          <div className="flex flex-col gap-3 p-4">
+            <div className="h-5 w-16 animate-pulse rounded-full bg-[#1a1d24]" />
+            <div className="h-5 w-3/4 animate-pulse rounded-md bg-[#1a1d24]" />
+            <div className="h-3 w-1/2 animate-pulse rounded-md bg-[#1a1d24]" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
   return (
     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {workouts.map((workout) => (
