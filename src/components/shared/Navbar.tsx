@@ -37,7 +37,7 @@ const Navbar = () => {
         {/* ---------- Center Navigation ---------- */}
         <div className="hidden items-center gap-1 md:flex">
           <Link
-            href="/workouts"
+            href="/"
             className={`${linkBase} ${
               isWorkouts
                 ? "bg-[#1A2312] text-[#C2F800]"
