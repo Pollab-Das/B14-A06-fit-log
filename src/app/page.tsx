@@ -1,6 +1,6 @@
 // src/app/page.tsx
 import Banner from "@/components/homepage/Banner";
-import Workouts from "@/components/homepage/Workouts";
+import Workouts from "@/components/homepage/Workout";
 
 export default function HomePage() {
   return (

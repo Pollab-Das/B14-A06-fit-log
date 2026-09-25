@@ -5,23 +5,33 @@ import { useEffect, useState } from "react";
 import WorkoutCard from "@/components/shared/WorkoutCard";
 import type { IWorkout } from "@/types/workouts.type";
 
+const MIN_LOADING_TIME = 500;
+
 const WorkoutsList = () => {
   const [workouts, setWorkouts] = useState<IWorkout[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchWorkouts = async () => {
+      const startTime = Date.now();
+
       try {
         setLoading(true);
         const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
+        if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
         setWorkouts(data);
       } catch (error) {
         console.error("Error:", error);
       } finally {
-        setLoading(false);
+        
+        const elapsed = Date.now() - startTime;
+        const remaining = Math.max(0, MIN_LOADING_TIME - elapsed);
+
+        setTimeout(() => setLoading(false), remaining);
       }
     };
+
     fetchWorkouts();
   }, []);
 
