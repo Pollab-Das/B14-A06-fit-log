@@ -125,15 +125,17 @@ const WorkoutsProvider = ({ children }: { children: ReactNode }) => {
 
   // ---------- Mark as Done ----------
   const markAsDone = (id: number) => {
-    setCompletedIds((prev) => {
-      if (prev.includes(id)) {
-        toast.info("Marked as not done");
-        return prev.filter((cid) => cid !== id);
-      }
-      toast.success("Marked as done");
-      return [...prev, id];
-    });
-  };
+  const isDone = completedIds.includes(id);
+
+  // Toast call updater-এর বাইরে — безопасно
+  if (isDone) {
+    toast.info("Marked as not done");
+    setCompletedIds((prev) => prev.filter((cid) => cid !== id));
+  } else {
+    toast.success("Marked as done");
+    setCompletedIds((prev) => [...prev, id]);
+  }
+};
 
   // ---------- Helpers ----------
   const isInPlan = (id: number) => myPlan.some((w) => w.id === id);
