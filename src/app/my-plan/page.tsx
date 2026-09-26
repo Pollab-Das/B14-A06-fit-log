@@ -122,4 +122,4 @@ const MyPlanPage = () => {
   );
 };
 
-export default MyPlanPage;
+export default MyPlanPage ;
