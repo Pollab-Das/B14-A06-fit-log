@@ -1,4 +1,4 @@
-// src/components/homepage/Banner.tsx
+
 import Image from "next/image";
 import { ArrowDown } from "lucide-react";
 import heroFigure from "@/assets/banner.png";
@@ -7,7 +7,7 @@ const Banner = () => {
   return (
     <section className="mx-auto max-w-[1280px] px-4 pt-6">
       <div className="relative grid grid-cols-1 items-center gap-8 overflow-hidden rounded-3xl bg-[#15171D] px-6 py-10 md:grid-cols-[1.5fr_1fr] md:gap-8 md:px-12 md:py-16 lg:px-16 lg:py-20">
-        {/* ---------- Left Content ---------- */}
+        {/* --- Left --- */}
         <div className="space-y-5 md:space-y-6">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#C2F800] md:text-sm">
             Workout Library
@@ -35,7 +35,7 @@ const Banner = () => {
           </div>
         </div>
 
-        {/* ---------- Right Image ---------- */}
+        {/* --- Right Image --- */}
         <div className="relative flex items-center justify-center md:justify-end">
           <div className="relative w-56 sm:w-72 md:w-full md:max-w-sm lg:max-w-md">
             <Image

@@ -1,4 +1,4 @@
-// src/components/workoutDetails/SaveButton.tsx
+
 "use client";
 
 import { Bookmark, BookmarkCheck } from "lucide-react";

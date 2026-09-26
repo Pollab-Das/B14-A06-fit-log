@@ -1,4 +1,4 @@
-// src/app/page.tsx
+
 import Banner from "@/components/homepage/Banner";
 import Workouts from "@/components/homepage/Workout";
 

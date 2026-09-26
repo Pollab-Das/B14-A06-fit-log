@@ -1,4 +1,4 @@
-// src/components/shared/WorkoutCard.tsx
+
 import Image from "next/image";
 import Link from "next/link";
 import { Clock, Flame, Star } from "lucide-react";
@@ -14,7 +14,7 @@ const WorkoutCard = ({ workout }: WorkoutCardProps) => {
       href={`/workouts/${workout.id}`}
       className="group flex flex-col overflow-hidden rounded-2xl border border-[#222630] bg-[#15171D] transition-all duration-200 hover:border-[#C2F800]/40 hover:-translate-y-0.5"
     >
-      {/* ---------- Image (only image, NO badge overlay) ---------- */}
+      {/*--- Image ---*/}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0C0D10]">
         <Image
           src={workout.image}
@@ -25,9 +25,9 @@ const WorkoutCard = ({ workout }: WorkoutCardProps) => {
         />
       </div>
 
-      {/* ---------- Content ---------- */}
+      {/*--- Content ----*/}
       <div className="flex flex-1 flex-col gap-3 p-4">
-        {/* ---------- Muscle Badges (NEW POSITION — above title) ---------- */}
+        {/*--- Muscle Badges ---*/}
         <div className="flex flex-wrap gap-1.5">
           {workout.muscleGroups.map((muscle) => (
             <span
@@ -39,7 +39,7 @@ const WorkoutCard = ({ workout }: WorkoutCardProps) => {
           ))}
         </div>
 
-        {/* ---------- Title + Equipment ---------- */}
+        
         <div>
           <h3 className="font-heading text-lg font-bold uppercase tracking-wide text-white">
             {workout.name}
@@ -47,7 +47,7 @@ const WorkoutCard = ({ workout }: WorkoutCardProps) => {
           <p className="mt-0.5 text-xs text-[#9CA3AF]">{workout.equipment}</p>
         </div>
 
-        {/* ---------- Meta Row ---------- */}
+        
         <div className="mt-auto flex items-center gap-4 border-t border-[#222630] pt-3 text-xs text-[#9CA3AF]">
           <span className="flex items-center gap-1">
             <Clock className="h-3.5 w-3.5" />

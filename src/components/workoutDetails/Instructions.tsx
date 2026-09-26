@@ -1,4 +1,4 @@
-// src/components/workoutDetails/Instructions.tsx
+
 const Instructions = ({ steps }: { steps: string[] }) => {
   return (
     <div className="mt-8">

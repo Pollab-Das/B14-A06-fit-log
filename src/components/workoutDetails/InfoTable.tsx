@@ -1,4 +1,4 @@
-// src/components/workoutDetails/InfoTable.tsx
+
 import type { IWorkout } from "@/types/workouts.type";
 
 const InfoTable = ({ workout }: { workout: IWorkout }) => {

@@ -1,4 +1,5 @@
-// src/components/homepage/Workouts.tsx
+
+import Banner from "./Banner";
 import WorkoutsList from "./WorkoutsList";
 
 const Workouts = () => {
@@ -16,7 +17,7 @@ const Workouts = () => {
         </p>
       </div>
 
-      {/* ✅ Client component with loading state */}
+      {/* Client component */}
       <WorkoutsList />
     </section>
   );

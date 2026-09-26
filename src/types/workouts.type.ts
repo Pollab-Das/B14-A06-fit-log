@@ -1,4 +1,4 @@
-// src/types/workouts.type.ts
+
 export interface IWorkout {
   id: number;
   name: string;

@@ -1,4 +1,4 @@
-// src/components/myPlan/StatsBar.tsx
+
 "use client";
 
 import type { IWorkout } from "@/types/workouts.type";

@@ -1,4 +1,4 @@
-// src/components/shared/Footer.tsx
+
 import Image from "next/image";
 import logo from "@/assets/logo.png";
 

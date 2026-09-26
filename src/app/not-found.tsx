@@ -1,4 +1,4 @@
-// src/app/not-found.tsx
+
 import Link from "next/link";
 import { Home } from "lucide-react";
 

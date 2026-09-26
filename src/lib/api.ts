@@ -1,4 +1,4 @@
-// src/lib/api.ts
+
 import type { IWorkout } from "@/types/workouts.type";
 
 const API_BASE = "https://api.abcz.workers.dev/api/fitlog";

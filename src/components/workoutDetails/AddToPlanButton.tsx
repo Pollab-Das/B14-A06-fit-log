@@ -1,4 +1,4 @@
-// src/components/workoutDetails/AddToPlanButton.tsx
+
 "use client";
 
 import { CalendarPlus, Check } from "lucide-react";
@@ -18,7 +18,7 @@ const AddToPlanButton = ({ workout }: { workout: IWorkout }) => {
     }
   };
 
-  // Disabled state — plan full AND this workout not in plan
+  // Disabled state — 
   const disabled = full && !active;
 
   return (

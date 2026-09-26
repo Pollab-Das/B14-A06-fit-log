@@ -1,4 +1,4 @@
-// src/components/shared/Navbar.tsx
+
 "use client";
 
 import Link from "next/link";
@@ -21,19 +21,19 @@ const Navbar = () => {
   const linkBase =
     "px-4 py-1.5 rounded-full text-sm font-medium transition-colors duration-200";
 
-  // ✅ Helper — navigate with spinner
+  // Helper
   const handleNavigate = (href: string) => (e: React.MouseEvent) => {
     e.preventDefault();
-    if (pathname === href) return; // already there
+    if (pathname === href) return;
     setNavigating(true);
     router.push(href);
-    // Small delay so spinner visible
+    // spinner 
     setTimeout(() => setNavigating(false), 400);
   };
 
   return (
     <>
-      {/* ✅ Full page spinner during navigation */}
+      
       {navigating && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0C0D10]/95 backdrop-blur-sm">
           <div className="flex flex-col items-center">
@@ -47,7 +47,7 @@ const Navbar = () => {
 
       <header className="sticky top-0 z-50 w-full bg-[#0C0D10] border-b border-[#222630]">
         <nav className="mx-auto flex h-20 max-w-[1280px] items-center justify-between px-6">
-          {/* Logo */}
+          {/* -- Logo -- */}
           <button
             onClick={handleNavigate("/")}
             className="flex items-center gap-2 cursor-pointer bg-transparent border-0"
@@ -88,7 +88,7 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Right Status */}
+          {/* -- Right Status -- */}
           <div className="flex items-center gap-6">
             <button
               onClick={handleNavigate("/my-plan")}

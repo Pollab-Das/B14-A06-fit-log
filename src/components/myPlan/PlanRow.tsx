@@ -1,4 +1,4 @@
-// src/components/myPlan/PlanRow.tsx
+
 "use client";
 
 import Image from "next/image";

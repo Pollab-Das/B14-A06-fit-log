@@ -1,4 +1,4 @@
-// src/components/myPlan/EmptyState.tsx
+
 import Link from "next/link";
 
 const EmptyState = () => {

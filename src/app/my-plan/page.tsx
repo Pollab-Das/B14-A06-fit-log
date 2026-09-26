@@ -1,4 +1,4 @@
-// src/app/my-plan/page.tsx
+
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
@@ -16,7 +16,7 @@ const MyPlanPage = () => {
   const [loading, setLoading] = useState(true);
   const [allWorkouts, setAllWorkouts] = useState<IWorkout[]>([]);
 
-  // ✅ Fetch on mount — assignment requirement
+  // Fetch 
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,7 +28,7 @@ const MyPlanPage = () => {
       } catch (error) {
         console.error("Error:", error);
       } finally {
-        // Small delay so loading state is visible (nice UX)
+        // Small delay 
         setTimeout(() => setLoading(false), 300);
       }
     };
@@ -63,7 +63,7 @@ const MyPlanPage = () => {
         </p>
       </div>
 
-      {/* ✅ Loading state — assignment requirement */}
+      {/*Loading state*/}
       {loading ? (
         <div className="flex flex-col items-center justify-center py-32">
           <div className="h-12 w-12 animate-spin rounded-full border-4 border-[#222630] border-t-[#C2F800]" />
@@ -73,12 +73,12 @@ const MyPlanPage = () => {
         </div>
       ) : (
         <>
-          {/* Stats Bar — current tab-এর list use করে */}
+          {/* Stats Bar */}
           <div className="mb-8">
             <StatsBar workouts={currentList} />
           </div>
 
-          {/* Tabs + Sort */}
+          {/* Tabs */}
           <div className="mb-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
             <div className="inline-flex rounded-lg border border-[#222630] bg-[#15171D] p-1">
               <button

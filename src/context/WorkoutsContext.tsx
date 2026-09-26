@@ -1,4 +1,4 @@
-// src/context/WorkoutsContext.tsx
+
 "use client";
 
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
@@ -49,7 +49,7 @@ const WorkoutsProvider = ({ children }: { children: ReactNode }) => {
   const [completedIds, setCompletedIds] = useState<number[]>([]);
   const [hydrated, setHydrated] = useState(false);
 
-  // ---------- Load from localStorage ----------
+  // ---- localStorage ---
   useEffect(() => {
     try {
       const storedPlan = localStorage.getItem("fitlog_plan");
@@ -66,7 +66,7 @@ const WorkoutsProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  // ---------- Persist to localStorage ----------
+  // --- localStorage ---
   useEffect(() => {
     if (!hydrated) return;
     localStorage.setItem("fitlog_plan", JSON.stringify(myPlan));
@@ -82,7 +82,7 @@ const WorkoutsProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("fitlog_done", JSON.stringify(completedIds));
   }, [completedIds, hydrated]);
 
-  // ---------- My Plan ----------
+  // --- My Plan ---
   const addToPlan = (workout: IWorkout) => {
     if (myPlan.some((w) => w.id === workout.id)) {
       toast.info("Already in today's plan");
@@ -108,7 +108,7 @@ const WorkoutsProvider = ({ children }: { children: ReactNode }) => {
     toast.success("Plan cleared");
   };
 
-  // ---------- Saved ----------
+  // --- Saved ----
   const addToSaved = (workout: IWorkout) => {
     if (saved.some((w) => w.id === workout.id)) {
       toast.info("Already saved");
@@ -123,11 +123,11 @@ const WorkoutsProvider = ({ children }: { children: ReactNode }) => {
     toast.success("Removed from saved");
   };
 
-  // ---------- Mark as Done ----------
+  // --- Mark as Done ----
   const markAsDone = (id: number) => {
   const isDone = completedIds.includes(id);
 
-  // Toast call updater-এর বাইরে — безопасно
+  // Toast call 
   if (isDone) {
     toast.info("Marked as not done");
     setCompletedIds((prev) => prev.filter((cid) => cid !== id));
@@ -137,7 +137,7 @@ const WorkoutsProvider = ({ children }: { children: ReactNode }) => {
   }
 };
 
-  // ---------- Helpers ----------
+  // ---- Helpers ----
   const isInPlan = (id: number) => myPlan.some((w) => w.id === id);
   const isInSaved = (id: number) => saved.some((w) => w.id === id);
   const isCompleted = (id: number) => completedIds.includes(id);
