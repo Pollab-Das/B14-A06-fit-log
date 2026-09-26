@@ -1,10 +1,11 @@
-
+// src/components/shared/Navbar.tsx
 "use client";
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
+import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { useWorkouts } from "@/context/WorkoutsContext";
 
@@ -13,6 +14,7 @@ const Navbar = () => {
   const router = useRouter();
   const { myPlan, saved } = useWorkouts();
   const [navigating, setNavigating] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const isWorkouts =
     pathname === "/" || pathname.startsWith("/workouts");
@@ -21,19 +23,19 @@ const Navbar = () => {
   const linkBase =
     "px-4 py-1.5 rounded-full text-sm font-medium transition-colors duration-200";
 
-  // Helper
+  // Navigate 
   const handleNavigate = (href: string) => (e: React.MouseEvent) => {
     e.preventDefault();
+    setMobileOpen(false);
     if (pathname === href) return;
     setNavigating(true);
     router.push(href);
-    // spinner 
     setTimeout(() => setNavigating(false), 400);
   };
 
   return (
     <>
-      
+      {/* spinner */}
       {navigating && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0C0D10]/95 backdrop-blur-sm">
           <div className="flex flex-col items-center">
@@ -47,7 +49,7 @@ const Navbar = () => {
 
       <header className="sticky top-0 z-50 w-full bg-[#0C0D10] border-b border-[#222630]">
         <nav className="mx-auto flex h-20 max-w-[1280px] items-center justify-between px-6">
-          {/* -- Logo -- */}
+          {/* --- Logo --- */}
           <button
             onClick={handleNavigate("/")}
             className="flex items-center gap-2 cursor-pointer bg-transparent border-0"
@@ -64,7 +66,7 @@ const Navbar = () => {
             </span>
           </button>
 
-          {/* Center Nav */}
+          {/*Center Navigation */}
           <div className="hidden items-center gap-1 md:flex">
             <button
               onClick={handleNavigate("/")}
@@ -88,11 +90,12 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* -- Right Status -- */}
-          <div className="flex items-center gap-6">
+          {/* -Right Status + Hamburger er jon --- */}
+          <div className="flex items-center gap-4">
+            {/* Plan */}
             <button
               onClick={handleNavigate("/my-plan")}
-              className="flex items-center gap-2 text-sm text-white hover:text-[#C2F800] transition-colors cursor-pointer bg-transparent border-0"
+              className="hidden sm:flex items-center gap-2 text-sm text-white hover:text-[#C2F800] transition-colors cursor-pointer bg-transparent border-0"
             >
               <span>Plan</span>
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#C2F800] text-[11px] font-bold text-black">
@@ -100,17 +103,73 @@ const Navbar = () => {
               </span>
             </button>
 
+            {/* Saved badge */}
             <button
               onClick={handleNavigate("/my-plan")}
-              className="flex items-center gap-2 text-sm text-white hover:text-[#C2F800] transition-colors cursor-pointer bg-transparent border-0"
+              className="hidden sm:flex items-center gap-2 text-sm text-white hover:text-[#C2F800] transition-colors cursor-pointer bg-transparent border-0"
             >
               <span>Saved</span>
               <span className="flex h-5 w-5 items-center justify-center rounded-full border border-[#222630] bg-transparent text-[11px] font-bold text-white">
                 {saved.length}
               </span>
             </button>
+
+            {/* Hamburger —  */}
+            <button
+              onClick={() => setMobileOpen((prev) => !prev)}
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#222630] text-white transition-colors hover:border-[#C2F800]/40 md:hidden"
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
+            </button>
           </div>
         </nav>
+
+        {/* --- Mobile Menu Dropdown -- */}
+        {mobileOpen && (
+          <div className="border-t border-[#222630] bg-[#0C0D10] px-4 py-4 md:hidden">
+            <div className="flex flex-col gap-2">
+              {/* Workouts */}
+              <button
+                onClick={handleNavigate("/")}
+                className={`flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
+                  isWorkouts
+                    ? "bg-[#1A2312] text-[#C2F800]"
+                    : "text-[#9CA3AF] hover:bg-[#15171D] hover:text-white"
+                }`}
+              >
+                <span>Workouts</span>
+                {isWorkouts && (
+                  <span className="h-2 w-2 rounded-full bg-[#C2F800]" />
+                )}
+              </button>
+
+              {/* My Plan */}
+              <button
+                onClick={handleNavigate("/my-plan")}
+                className={`flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
+                  isMyPlan
+                    ? "bg-[#1A2312] text-[#C2F800]"
+                    : "text-[#9CA3AF] hover:bg-[#15171D] hover:text-white"
+                }`}
+              >
+                <span>My Plan</span>
+                <div className="flex items-center gap-2">
+                  <span className="flex h-5 items-center gap-1 rounded-full bg-[#C2F800] px-2 text-[11px] font-bold text-black">
+                    {myPlan.length} Plan
+                  </span>
+                  <span className="flex h-5 items-center gap-1 rounded-full border border-[#222630] px-2 text-[11px] font-bold text-white">
+                    {saved.length} Saved
+                  </span>
+                </div>
+              </button>
+            </div>
+          </div>
+        )}
       </header>
     </>
   );
